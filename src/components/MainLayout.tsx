@@ -1,6 +1,6 @@
 const MainLayout = ({children}: any) => {
   return (
-    <div>
+    <div className="bg-slate-900 text-white">
       {children}
     </div>
   )
