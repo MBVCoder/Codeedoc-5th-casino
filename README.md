@@ -67,3 +67,4 @@ export default tseslint.config([
   },
 ])
 ```
+original game : https://betfury.com/casino/games/roulette
