@@ -1,10 +1,37 @@
 import { CircleQuestionMark } from "lucide-react";
+import redandwhitecoin from "@assets/coins/redwhitecoin.png";
 import pagebg from "@assets/bg/casinobg.png";
 import light from "@assets/coins/lightning.png";
 import furycoin from "@assets/coins/funfury.svg";
 import CoinSlider from "@components/CoinSlider";
+import {
+  Heart,
+  Maximize,
+  Settings,
+  ShieldCheck,
+  ChartColumnDecreasing,
+  History,
+  Rewind,
+  CircleX,
+} from "lucide-react";
+import wheel from "@assets/gamespart/wheel.png";
+import foreground from "@assets/gamespart/foreground.png";
+import xmid from "@assets/gamespart/xmid.png";
+import { useEffect, useState } from "react";
+import Loader from "@components/miniComponents/Loader";
+import { Board } from "@components/Board";
 
 const Roulete = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <div className="flex flex-col items-center justify-center h-screen relative">
       <img
@@ -42,6 +69,9 @@ const Roulete = () => {
                     <p className="text-[13px] text-gray-500">10.000000</p>
                   </div>
                 </div>
+                <div className="flex w-full gap-1">
+                  <CoinSlider />
+                </div>
                 <div className="flex flex-col gap-1 betinput">
                   <div className="betselect bg-black/30 p-2 rounded-md border-[1px] border-gray-300/20">
                     <div className="flex items-center gap-3 px-1">
@@ -64,9 +94,6 @@ const Roulete = () => {
                     </button>
                   </div>
                 </div>
-                <div>
-                  <CoinSlider />
-                </div>
                 <button className="bg-red-700 py-3 rounded-lg shadow-lg inset-shadow-sm inset-shadow-white/50 shadow-red-500/30 tracking-wide">
                   BET
                 </button>
@@ -85,9 +112,89 @@ const Roulete = () => {
               </div>
             </div>
           </div>
-          <div className="bg-pink-800 w-full h-full flex flex-col items-center justify-center gap-[24px]">
-            <div className="bg-green-600 w-full h-full"></div>
-            <div className="bg-green-700 w-full h-15"></div>
+          <div className=" w-full h-full flex flex-col items-center justify-center gap-[24px]">
+            <div className=" w-full h-full">
+              <div className="bg-gradient-to-t from-purple-900/50 backdrop-blur-2xl border-4 border-purple-900 h-[90%] max-w-[700px] mt-7 mx-auto rounded-2xl">
+                <div className="flex items-center h-full w-full relative">
+                  <div className="bg-blue-900 flex items-center absolute top-2 right-2 p-1 rounded-2xl hover:translate-y-[-4px] duration-300 cursor-pointer">
+                    <History className="size-5" />
+                  </div>
+                  <div className="absolute top-30 left-[-60px]">
+                    <div className="flex justify-between items-center gap-2 -rotate-90 bg-purple-800 px-3 rounded-b-2xl hover:cursor-pointer">
+                      <img
+                        src={redandwhitecoin}
+                        alt="icon"
+                        className="w-auto h-7 mt-3"
+                      />
+                      <h1 className="font-semibold text-md tracking-wide">
+                        Section Bets
+                      </h1>
+                    </div>
+                  </div>
+                  <div className="w-full h-full rounded-2xl flex flex-col">
+                    <div className="relative w-fit mx-auto">
+                      <div className="wheel-container ">
+                        <img
+                          src={wheel}
+                          alt="spinnerbg"
+                          className="w-auto h-70 absolute animate-[spin_12s_linear_infinite]"
+                        />
+                        <img
+                          src={foreground}
+                          alt="spinnerbg"
+                          className="w-auto h-70 absolute animate-[spin_12s_linear_infinite]"
+                        />
+                      </div>
+                      <img
+                        src={xmid}
+                        alt="spinnerbg"
+                        className="w-auto h-70 relative animate-[spin_14s_linear_infinite_reverse]"
+                      />
+                    </div>
+                    <div className="w-full h-full relative">
+                      <div className="absolute -top-8 right-15 flex gap-2">
+                        <div className="bg-purple-700 px-2 py-1 rounded-md">
+                          <Rewind className="size-4" />
+                        </div>
+                        <div className="bg-purple-700 px-2 py-1 rounded-md">
+                          <CircleX className="size-4" />
+                        </div>
+                      </div>
+                      <Board />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="w-full h-15">
+              <div className="flex justify-between items-center h-full w-full">
+                <div className="bg-slate-900/90 border-[1px] border-gray-300/10 rounded-2xl p-1 flex items-center">
+                  <div className="bg-slate-800 rounded-xl flex items-center px-3 py-2 gap-2">
+                    <Heart className="size-5 text-red-500 fill-red-500" />
+                    <span>1.9k</span>
+                  </div>
+                </div>
+                <div className="bg-slate-900/90 border-[1px] border-gray-300/10 rounded-2xl p-1 flex items-center">
+                  <div className=" rounded-2xl flex items-center h-full gap-2">
+                    <div className="flex items-center bg-slate-800 px-3 py-2 rounded-xl hover:cursor-pointer hover:bg-slate-700 duration-300">
+                      <ChartColumnDecreasing className="size-5" />
+                    </div>
+                    <div className="flex items-center bg-slate-800 px-3 py-2 rounded-xl hover:cursor-pointer hover:bg-slate-700 duration-300">
+                      <ShieldCheck className="size-5" />
+                    </div>
+                    <div className="flex items-center bg-slate-800 px-3 py-2 rounded-xl hover:cursor-pointer hover:bg-slate-700 duration-300">
+                      <CircleQuestionMark className="size-5" />
+                    </div>
+                    <div className="flex items-center bg-slate-800 px-3 py-2 rounded-xl hover:cursor-pointer hover:bg-slate-700 duration-300">
+                      <Maximize className="size-5" />
+                    </div>
+                    <div className="flex items-center bg-slate-800 px-3 py-2 rounded-xl hover:cursor-pointer hover:bg-slate-700 duration-300">
+                      <Settings className="size-5" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
