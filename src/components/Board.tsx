@@ -1,134 +1,3 @@
-// type BoardProps = {
-//   setHoveredNums: (nums: number[]) => void;
-// };
-
-// export const Board = ({ setHoveredNums }: BoardProps) => {
-//   const rows = [
-//     [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36],
-//     [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35],
-//     [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34],
-//   ];
-
-//   const ranges: Record<string, number[]> = {
-//     "1-12": range(1, 12),
-//     "13-24": range(13, 24),
-//     "25-36": range(25, 36),
-//     even: evenNums(),
-//     odd: oddNums(),
-//   };
-
-//   return (
-//     <div className="w-full h-full flex items-center justify-center pb-2">
-//       <div className="w-[85%] aspect-[14/5] h-full p-2 rounded-md flex flex-col gap-1">
-//         {/* Top grid */}
-//         <div className="grid grid-cols-[40px_repeat(12,1fr)_40px] grid-rows-3 gap-1">
-//           {/* Zero */}
-//           <div
-//             className="row-span-3 flex items-center justify-center bg-green-600 text-white font-semibold rounded cursor-pointer"
-//             onMouseEnter={() => setHoveredNums([0])}
-//             onMouseLeave={() => setHoveredNums([])}
-//           >
-//             0
-//           </div>
-
-//           {rows.map((row) =>
-//             row.map((n) => (
-//               <div
-//                 key={n}
-//                 className={`flex items-center justify-center font-semibold text-sm rounded cursor-pointer ${
-//                   isRed(n)
-//                     ? "bg-red-800 text-white"
-//                     : "bg-blue-950 text-white"
-//                 }`}
-//                 onMouseEnter={() => setHoveredNums([n])}
-//                 onMouseLeave={() => setHoveredNums([])}
-//               >
-//                 {n}
-//               </div>
-//             ))
-//           )}
-//         </div>
-
-//         {/* Dozens */}
-//         <div className="grid grid-cols-[40px_repeat(12,1fr)_40px] gap-1">
-//           <div />
-//           {Object.keys(ranges).slice(0, 3).map((d) => (
-//             <div
-//               key={d}
-//               className="col-span-4 flex items-center justify-center bg-black/30 text-white text-xs rounded cursor-pointer"
-//               onMouseEnter={() => setHoveredNums(ranges[d])}
-//               onMouseLeave={() => setHoveredNums([])}
-//             >
-//               {d}
-//             </div>
-//           ))}
-//           <div />
-//         </div>
-
-//         {/* Even/Odd row */}
-//         <div className="grid grid-cols-[40px_repeat(12,1fr)_40px] gap-1">
-//           <div />
-//           <div
-//             className="col-span-2 flex items-center justify-center bg-black/30 text-white text-xs rounded cursor-pointer"
-//             onMouseEnter={() => setHoveredNums(range(1, 18))}
-//             onMouseLeave={() => setHoveredNums([])}
-//           >
-//             1 to 18
-//           </div>
-//           <div
-//             className="col-span-2 flex items-center justify-center bg-black/30 text-white text-xs rounded cursor-pointer"
-//             onMouseEnter={() => setHoveredNums(ranges.even)}
-//             onMouseLeave={() => setHoveredNums([])}
-//           >
-//             even
-//           </div>
-//           <div
-//             className="col-span-2 bg-red-800 cursor-pointer"
-//             onMouseEnter={() => setHoveredNums(redNums())}
-//             onMouseLeave={() => setHoveredNums([])}
-//           />
-//           <div
-//             className="col-span-2 bg-blue-950 cursor-pointer"
-//             onMouseEnter={() => setHoveredNums(blackNums())}
-//             onMouseLeave={() => setHoveredNums([])}
-//           />
-//           <div
-//             className="col-span-2 flex items-center justify-center bg-black/30 text-white text-xs rounded cursor-pointer"
-//             onMouseEnter={() => setHoveredNums(ranges.odd)}
-//             onMouseLeave={() => setHoveredNums([])}
-//           >
-//             odd
-//           </div>
-//           <div
-//             className="col-span-2 flex items-center justify-center bg-black/30 text-white text-xs rounded cursor-pointer"
-//             onMouseEnter={() => setHoveredNums(range(19, 36))}
-//             onMouseLeave={() => setHoveredNums([])}
-//           >
-//             19 to 36
-//           </div>
-//           <div />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// function range(start: number, end: number) {
-//   return Array.from({ length: end - start + 1 }, (_, i) => start + i);
-// }
-// function evenNums() { return range(1, 36).filter(n => n % 2 === 0); }
-// function oddNums() { return range(1, 36).filter(n => n % 2 !== 0); }
-// function redNums() {
-//   return [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
-// }
-// function blackNums() {
-//   return range(1,36).filter(n => !redNums().includes(n));
-// }
-// function isRed(n: number) {
-//   const reds = new Set([1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]);
-//   return reds.has(n);
-// }
-
 type BoardProps = {
   setHoveredNums: (nums: number[]) => void;
   hoveredNums: number[];
@@ -156,32 +25,92 @@ export const Board = ({ setHoveredNums, hoveredNums }: BoardProps) => {
         {/* Top grid: 0, numbers, 2:1 */}
         <div className="grid grid-cols-[40px_repeat(12,1fr)_40px] grid-rows-3 gap-1 flex-3 ">
           {/* Zero column */}
-          <div
-            className="row-span-3 flex items-center justify-center bg-green-600 text-white font-semibold rounded hover:cursor-pointer hover:translate-y-[-2px] hover:brightness-150"
-            onMouseEnter={() => setHoveredNums([0])}
-            onMouseLeave={() => setHoveredNums([])}
-          >
-            0
+          <div className="relative row-span-3 flex items-center justify-center">
+            <div
+              className={`w-full h-full flex items-center justify-center bg-green-600 text-white font-semibold rounded hover:cursor-pointer hover:translate-y-[-2px] ${hoveredNums.includes(0) ? "brightness-150" : "brightness-100" }`}
+              onMouseEnter={() => setHoveredNums([0])}
+              onMouseLeave={() => setHoveredNums([])}
+            >
+              0
+            </div>
+            <div
+              onMouseEnter={() => setHoveredNums([0, 3])}
+              onMouseLeave={() => setHoveredNums([])}
+              className="absolute w-1 h-10 top-0 left-10 bg-yellow-400 cursor-pointer"
+            />
+            <div
+              onMouseEnter={() => setHoveredNums([0, 2])}
+              onMouseLeave={() => setHoveredNums([])}
+              className="absolute w-1 h-10 left-10 bg-yellow-400 cursor-pointer"
+            />
+            <div
+              onMouseEnter={() => setHoveredNums([0, 1])}
+              onMouseLeave={() => setHoveredNums([])}
+              className="absolute w-1 h-10 bottom-0 left-10 bg-yellow-400 cursor-pointer"
+            />
+            <div
+              // onClick={() => console.log(hoveredNums)}
+              onMouseEnter={() => setHoveredNums([0, 2, 3])}
+              onMouseLeave={() => setHoveredNums([])}
+              className="absolute size-2 top-10 translate-x-[-2px] translate-y-[-2px] left-10 bg-green-400 cursor-pointer z-10 rounded-2xl"
+            />
+            <div
+              // onClick={() => console.log(hoveredNums)}
+              onMouseEnter={() => setHoveredNums([0, 1, 2])}
+              onMouseLeave={() => setHoveredNums([])}
+              className="absolute size-2 top-21 left-10 translate-x-[-2px] bg-green-400 cursor-pointer z-10 rounded-2xl"
+            />
           </div>
 
           {rows.map((row, rIdx) => (
             <>
-              {row.map((n) => {
+              {row.map((n, cIdx) => {
+                const right = row[cIdx + 1]; // horizontal split
+                const below = rows[rIdx + 1]?.[cIdx]; // vertical split
+
+                const bottomRight = rows[rIdx + 1]?.[cIdx + 1]; // for corner
                 const isHighlighted = hoveredNums.includes(n);
                 return (
-                  <div
-                    onMouseEnter={() => setHoveredNums([n])}
-                    onMouseLeave={() => setHoveredNums([])}
-                    key={n}
-                    className={`flex items-center justify-center font-semibold text-sm rounded
+                  <div key={`cell-${n}`} className="relative">
+                    <div
+                      onMouseEnter={() => setHoveredNums([n])}
+                      onMouseLeave={() => setHoveredNums([])}
+                      className={`flex size-full items-center justify-center font-semibold text-sm rounded
                       ${isHighlighted ? "brightness-200" : "brightness-100"}
                     ${
                       isRed(n)
-                        ? "bg-red-800 text-white hover:translate-y-[-2px] hover:brightness-200 cursor-pointer hover:border-b-2 border-red-950"
-                        : "bg-blue-950 contrast-200 text-white hover:translate-y-[-2px] hover:brightness-200 cursor-pointer hover:border-b-2 border-black"
+                        ? "bg-red-800 text-white hover:brightness-200 cursor-pointer "
+                        : "bg-blue-950 contrast-200 text-white hover:brightness-200 cursor-pointer "
                     }`}
-                  >
-                    {n}
+                    >
+                      {n}
+                    </div>
+                    {/* Horizontal Split (right) */}
+                    {right && (
+                      <div
+                        onMouseEnter={() => setHoveredNums([n, right])}
+                        onMouseLeave={() => setHoveredNums([])}
+                        className="absolute w-1 h-full translate-x-9 -translate-y-9 2xl:-translate-y-10 bg-white cursor-pointer"
+                      />
+                    )}
+                    {/* Vertical Split (below) */}
+                    {below && (
+                      <div
+                        onMouseEnter={() => setHoveredNums([n, below])}
+                        onMouseLeave={() => setHoveredNums([])}
+                        className="absolute bottom-0 left-1/2 h-1 w-full -translate-x-1/2 bg-teal-600 translate-y-1 cursor-pointer"
+                      />
+                    )}
+                    {/* Corner Split (4-cell) */}
+                    {below && right && bottomRight && (
+                      <div
+                        onMouseEnter={() =>
+                          setHoveredNums([n, right, below, bottomRight])
+                        }
+                        onMouseLeave={() => setHoveredNums([])}
+                        className="absolute bottom-0 right-0 size-2 translate-x-[6px] bg-green-400 translate-y-[5px] z-10 rounded-full cursor-pointer"
+                      />
+                    )}
                   </div>
                 );
               })}

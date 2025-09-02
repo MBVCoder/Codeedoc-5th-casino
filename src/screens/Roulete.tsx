@@ -51,13 +51,7 @@ const Roulete = () => {
           background: `linear-gradient(to top, rgba(0, 0, 0, 0.9) 20%, rgba(0, 0, 0, 0.9) 35%, rgba(255,0,0,0) 100%)`,
         }}
       />
-      <div className="Main-container h-[80%] w-[70%] relative ">
-        {/* <div className="grid grid-flow-row-dense grid-cols-8 grid-rows-8 gap-6 w-full h-full">
-          <div className=" bg-pink-500 row-span-7 col-span-2">01</div>
-          <div className=" bg-pink-600  row-span-7 col-span-6">02</div>
-          <div className="bg-pink-700 col-span-2">03</div>
-          <div className="bg-pink-800 col-span-6">04</div>
-        </div> */}
+      <div className="Main-container h-[80%] relative ">
         <div className="flex w-full h-full gap-[24px]">
           <div className="max-w-[270px] w-full h-full flex flex-col items-center justify-center gap-[24px] rounded-2xl bg-slate-900/90 backdrop-blur-sm border-[1px] border-gray-300/10 Control-Part">
             <div className=" w-full h-full">
@@ -118,7 +112,7 @@ const Roulete = () => {
               </div>
             </div>
           </div>
-          <div className=" w-full h-full flex flex-col items-center justify-center gap-[24px] Game-Part">
+          <div className=" w-full h-full flex flex-col items-center justify-center Game-Part">
             <div className=" w-full h-full">
               <div className="bg-gradient-to-t from-purple-900/50 backdrop-blur-2xl border-4 border-purple-900 h-[90%] max-w-[700px] mt-7 mx-auto rounded-2xl">
                 <div className="flex items-center h-full w-full relative">
@@ -143,18 +137,18 @@ const Roulete = () => {
                         <img
                           src={wheel}
                           alt="spinnerbg"
-                          className="w-auto h-70 absolute rotate-90 saturate-200 "
+                          className="w-auto h-60 2xl:h-70 absolute rotate-90 saturate-200 "
                         />
                         <img
                           src={foreground}
                           alt="spinnerbg"
-                          className="w-auto h-70 absolute"
+                          className="w-auto h-60 2xl:h-70 absolute z-0"
                         />
                       </div>
                       <img
                         src={xmid}
                         alt="spinnerbg"
-                        className="w-auto h-70 relative animate-[spin_7s_linear_infinite_reverse]"
+                        className="w-auto h-60 2xl:h-70 relative animate-[spin_7s_linear_infinite_reverse]"
                       />
                       {allNumbers.map((num, i) => {
                         const isHighlighted = hoveredNums.includes(num);
