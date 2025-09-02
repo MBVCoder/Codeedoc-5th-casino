@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Roulete from "@screens/Roulete";
-import Navbar from "@components/Navbar";
+import Navbar from "@components/miniComponents/Navbar";
 import MainLayout from "@components/MainLayout";
 
 function App() {
